@@ -22,14 +22,11 @@ volumeSlider.value = 5;
 
 // Function to handle playing background music on first user interaction
 function playBackgroundMusic() {
-    // Check if the music hasn't started yet
     if (!isMusicStarted) {
-        backgroundMusic.volume = volumeSlider.value / 100; // Set initial volume
+        backgroundMusic.volume = volumeSlider.value / 100;
         backgroundMusic.play().then(() => {
-            // If the music plays successfully, set the flag
             isMusicStarted = true;
         }).catch(e => {
-            // Handle cases where autoplay is blocked, though it should work on user interaction
             console.log("Failed to play background music. It needs a user gesture.");
         });
     }
@@ -62,7 +59,7 @@ function generateNewTarget() {
 }
 
 function handleButtonClick(event) {
-    playBackgroundMusic(); // This will trigger the music on ANY button click
+    playBackgroundMusic();
 
     const buttonValue = event.target.textContent;
 
@@ -117,18 +114,26 @@ function checkAnswer() {
 // Event Listeners
 buttons.addEventListener('click', handleButtonClick);
 nextBtn.addEventListener('click', () => {
-    playBackgroundMusic(); // Also trigger music on the 'Next' button click
+    playBackgroundMusic();
     generateNewTarget();
 });
 
-// Volume control
+// ********** التعديل هنا **********
 volumeSlider.addEventListener('input', (e) => {
+    // Start music on volume change
+    playBackgroundMusic();
+    // Set the volume
     backgroundMusic.volume = e.target.value / 100;
+    // Unmute if the user changes the volume and it was muted
+    if (backgroundMusic.muted && e.target.value > 0) {
+        backgroundMusic.muted = false;
+        speakerPath.setAttribute('d', 'M11 5L6 9H2V15H6L11 19V5Z');
+        wavePath.setAttribute('d', 'M15.5 8C17.8443 10.3443 17.8443 13.6557 15.5 16M19 4C23 8 23 16 19 20');
+    }
 });
 
 // Toggle mute/unmute
 speakerIcon.addEventListener('click', () => {
-    // This is also a user interaction, so we can play the music here if it hasn't started
     playBackgroundMusic();
     if (backgroundMusic.muted) {
         backgroundMusic.muted = false;
