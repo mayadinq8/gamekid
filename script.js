@@ -23,9 +23,10 @@ volumeSlider.value = 5;
 // Function to handle playing background music on first user interaction
 function playBackgroundMusic() {
     if (!isMusicStarted) {
-        backgroundMusic.volume = volumeSlider.value / 100;
         backgroundMusic.play().then(() => {
             isMusicStarted = true;
+            // Set initial volume after a successful play attempt
+            backgroundMusic.volume = volumeSlider.value / 100;
         }).catch(e => {
             console.log("Failed to play background music. It needs a user gesture.");
         });
@@ -119,18 +120,18 @@ nextBtn.addEventListener('click', () => {
 });
 
 // ********** التعديل هنا **********
-volumeSlider.addEventListener('input', (e) => {
-    // Start music on volume change
+function updateVolume(e) {
     playBackgroundMusic();
-    // Set the volume
     backgroundMusic.volume = e.target.value / 100;
-    // Unmute if the user changes the volume and it was muted
     if (backgroundMusic.muted && e.target.value > 0) {
         backgroundMusic.muted = false;
         speakerPath.setAttribute('d', 'M11 5L6 9H2V15H6L11 19V5Z');
         wavePath.setAttribute('d', 'M15.5 8C17.8443 10.3443 17.8443 13.6557 15.5 16M19 4C23 8 23 16 19 20');
     }
-});
+}
+
+volumeSlider.addEventListener('input', updateVolume);
+volumeSlider.addEventListener('change', updateVolume);
 
 // Toggle mute/unmute
 speakerIcon.addEventListener('click', () => {
