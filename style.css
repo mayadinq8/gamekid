@@ -1,0 +1,197 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #f0f9ff 0%, #cbebff 100%);
+}
+
+.game-container {
+    width: 90%;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+}
+
+.header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.audio-control {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.speaker-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+#volume-slider {
+    width: 80px;
+    -webkit-appearance: none;
+    height: 5px;
+    border-radius: 5px;
+    background: #FF5722;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+#volume-slider:hover {
+    opacity: 1;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #f0f9ff;
+    cursor: pointer;
+    border: 2px solid #FF5722;
+}
+
+.mascot {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+    transition: transform 0.3s;
+}
+
+.target-number-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+#target-number {
+    font-size: 4em;
+    font-weight: bold;
+    color: #4CAF50;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.next-btn {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    background-color: #FF5722;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.next-btn:hover {
+    background-color: #e64a19;
+}
+
+.calculator {
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.screen {
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 2.5em;
+    text-align: right;
+    margin-bottom: 20px;
+    color: #333;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.btn {
+    font-size: 1.8em;
+    padding: 15px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s, background-color 0.3s;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.num-btn {
+    background-color: #B2EBF2;
+    color: #00796B;
+}
+
+.num-btn:hover {
+    background-color: #80DEEA;
+}
+
+.op-btn {
+    background-color: #FFCDD2;
+    color: #D32F2F;
+}
+
+.op-btn:hover {
+    background-color: #EF9A9A;
+}
+
+.clear-btn {
+    background-color: #FFCC80;
+    color: #FF8F00;
+}
+
+.clear-btn:hover {
+    background-color: #FFB74D;
+}
+
+.del-btn {
+    background-color: #F8BBD0;
+    color: #C2185B;
+}
+
+.del-btn:hover {
+    background-color: #F48FB1;
+}
+
+.equals-btn {
+    background-color: #C8E6C9;
+    color: #388E3C;
+    grid-column: span 2;
+}
+
+.equals-btn:hover {
+    background-color: #A5D6A7;
+}
+
+/* Specific styling for the zero button */
+.zero-btn {
+    grid-column: span 2;
+}

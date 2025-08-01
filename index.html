@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Fun!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <div class="audio-control">
+                <svg id="speaker-icon" class="speaker-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path id="speaker-path" d="M11 5L6 9H2V15H6L11 19V5Z" stroke="#FF5722" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path id="wave-path" d="M15.5 8C17.8443 10.3443 17.8443 13.6557 15.5 16M19 4C23 8 23 16 19 20" stroke="#FF5722" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <input type="range" id="volume-slider" min="0" max="100" value="30">
+            </div>
+            
+            <img id="mascot" src="waiting.gif" alt="Mascot" class="mascot">
+            
+            <div class="target-number-container">
+                <span id="target-number"></span>
+                <button id="next-btn" class="next-btn">Next</button>
+            </div>
+        </div>
+        <div class="calculator">
+            <div class="screen" id="calc-screen">0</div>
+            <div class="buttons">
+                <button class="btn op-btn">+</button>
+                <button class="btn op-btn">-</button>
+                <button class="btn op-btn">x</button>
+                <button class="btn op-btn">÷</button>
+
+                <button class="btn num-btn">7</button>
+                <button class="btn num-btn">8</button>
+                <button class="btn num-btn">9</button>
+                <button class="btn clear-btn">C</button>
+                
+                <button class="btn num-btn">4</button>
+                <button class="btn num-btn">5</button>
+                <button class="btn num-btn">6</button>
+                <button class="btn del-btn">DEL</button>
+                
+                <button class="btn num-btn">1</button>
+                <button class="btn num-btn">2</button>
+                <button class="btn num-btn">3</button>
+                <button class="btn equals-btn">=</button>
+                
+                <button class="btn num-btn zero-btn">0</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="background-music" src="background.mp3" loop></audio>
+    <audio id="win-sound" src="win.mp3"></audio>
+    <audio id="wrong-sound" src="wrong.mp3"></audio>
+    <audio id="making-sound" src="making.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
