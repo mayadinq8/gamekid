@@ -17,18 +17,21 @@ let currentExpression = '';
 const wrongMascots = ['angry.gif', 'sad.gif', 'cry.gif'];
 let isMusicStarted = false;
 
-// Set default volume to 5%
+// Set default volume to 5% and update the slider value
 volumeSlider.value = 5;
 
-// Function to handle playing audio correctly on page load
+// Function to handle playing background music on first user interaction
 function playBackgroundMusic() {
+    // Check if the music hasn't started yet
     if (!isMusicStarted) {
         backgroundMusic.volume = volumeSlider.value / 100; // Set initial volume
-        backgroundMusic.play().catch(e => {
-            console.log("Autoplay was prevented. User interaction is required to enable sound.");
-            // We can show a message to the user here to click to enable sound
+        backgroundMusic.play().then(() => {
+            // If the music plays successfully, set the flag
+            isMusicStarted = true;
+        }).catch(e => {
+            // Handle cases where autoplay is blocked, though it should work on user interaction
+            console.log("Failed to play background music. It needs a user gesture.");
         });
-        isMusicStarted = true;
     }
 }
 
@@ -59,7 +62,7 @@ function generateNewTarget() {
 }
 
 function handleButtonClick(event) {
-    playBackgroundMusic(); // Start music on first interaction
+    playBackgroundMusic(); // This will trigger the music on ANY button click
 
     const buttonValue = event.target.textContent;
 
@@ -113,8 +116,10 @@ function checkAnswer() {
 
 // Event Listeners
 buttons.addEventListener('click', handleButtonClick);
-nextBtn.addEventListener('click', generateNewTarget);
-document.addEventListener('DOMContentLoaded', playBackgroundMusic); // Try to play on page load
+nextBtn.addEventListener('click', () => {
+    playBackgroundMusic(); // Also trigger music on the 'Next' button click
+    generateNewTarget();
+});
 
 // Volume control
 volumeSlider.addEventListener('input', (e) => {
@@ -123,6 +128,8 @@ volumeSlider.addEventListener('input', (e) => {
 
 // Toggle mute/unmute
 speakerIcon.addEventListener('click', () => {
+    // This is also a user interaction, so we can play the music here if it hasn't started
+    playBackgroundMusic();
     if (backgroundMusic.muted) {
         backgroundMusic.muted = false;
         backgroundMusic.volume = volumeSlider.value / 100;
